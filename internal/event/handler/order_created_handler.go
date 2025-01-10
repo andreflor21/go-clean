@@ -1,8 +1,13 @@
 package handler
 
-import ("encoding/json"
-"sync"
-"github.com/streadway/amqp")
+import (
+	"encoding/json"
+	"fmt"
+	"sync"
+
+	"github.com/andreflor21/go-clean/pkg/events"
+	"github.com/streadway/amqp"
+)
 
 type OrderCreatedHandler struct {
 	RabbitMQChannel *amqp.Channel
@@ -20,7 +25,7 @@ func (h *OrderCreatedHandler) Handle(event events.EventInterface, wg *sync.WaitG
 	jsonOutput, _ := json.Marshal(event.GetPayload())
 	msgRabbitmq := amqp.Publishing{
 		ContentType: "application/json",
-		Body: jsonOutput
+		Body: jsonOutput,
 	}
 
 	h.RabbitMQChannel.Publish(

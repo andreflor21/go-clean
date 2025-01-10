@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"gihub.com/andreflor21/go-clean/internal/entity"
-	"gihub.com/andreflor21/go-clean/internal/usecase"
+	"github.com/andreflor21/go-clean/internal/entity"
+	"github.com/andreflor21/go-clean/internal/usecase"
+	"github.com/andreflor21/go-clean/pkg/events"
 )
 
 type WebOrderHandler struct {
